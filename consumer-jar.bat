@@ -1,0 +1,1 @@
+C:\Users\porche\.jdks\corretto-17.0.6\bin\java.exe -jar D:\WORK\BVV\JAVA\dockerinteract\consumer\build\libs\consumer-0.0.1-SNAPSHOT.jar 

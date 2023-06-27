@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  ice-cus-consumer:
+    container_name: ice-test-consumer
+#    extra_hosts:
+#      - "host.docker.internal:host-gateway"
+    image: ice-test-consumer
+    networks:
+      network-1:
+#        ipv4_address: 172.16.0.146
+    ports:
+      - "9966:9966"
+    environment:
+      - SERVER_PORT=9966
+
+  ice-cus-producer:
+    container_name: ice-test-producer
+    image: ice-test-producer
+    networks:
+      network-1:
+    ports:
+      - "9955:9955"
+#    extra_hosts:
+#      - "host.docker.internal:host-gateway"
+    environment:
+#      - SERVER_PORT=9955
+#      - CONSUMER_URL=http://ice-cus-consumer:9966
+#      - CONSUMER_URL=http://localhost:9966
+#      - CONSUMER_URL=http://127.0.0.1:9966
+#      - CONSUMER_URL=http://172.16.0.146:9966
+      - CONSUMER_URL=http://host.docker.internal:9966
+
+
+#    extra_hosts:
+#      - "host.docker.internal:host-gateway"
+    #    networks:
+#      static-network:
+    #    network_mode: "bridge"
+#    networks:
+#      - network-1
+#    extra_hosts:
+#      - "127.0.0.1:172.16.0.146"
+    #      - "localhost:host-gateway"
+    #    network_mode: "host"
+
+networks:
+  network-1:
+
+
+

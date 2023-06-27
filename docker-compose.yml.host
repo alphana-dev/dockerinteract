@@ -1,0 +1,68 @@
+#version: '3.9'
+
+version: '3'
+
+#networks:
+#  static-network:
+#    ipam:
+#      config:
+#        - subnet: 172.16.0.0/24
+#      config:
+#        - subnet: 172.16.0.0/24
+
+#networks:
+#  static-network:
+#    driver: host
+#    ipam:
+#      driver: host
+#      config:
+#        - subnet: 172.16.0.0/24
+#          gateway: 172.16.0.1
+
+services:
+  my-service:
+    image: ice-test-consumer
+    network_mode: "host"
+    ports:
+      - "1234:9966"
+  ice-cus-consumer:
+    network_mode: "host"
+    container_name: ice-test-consumer
+#    extra_hosts:
+#      - "host.docker.internal:host-gateway"
+    image: ice-test-consumer
+#    networks:
+#      static-network:
+#        ipv4_address: 172.16.0.146
+    ports:
+      - "9966:9966"
+    environment:
+      - SERVER_PORT=9966
+
+  ice-cus-producer:
+    network_mode: "host"
+    container_name: ice-test-producer
+    image: ice-test-producer
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    #    networks:
+#      static-network:
+    #    network_mode: "bridge"
+#    networks:
+#      - network-1
+#    extra_hosts:
+#      - "127.0.0.1:172.16.0.146"
+    #      - "localhost:host-gateway"
+    #    network_mode: "host"
+#    ports:
+#      - "9955:9955"
+    environment:
+#      - SERVER_PORT=9955
+#      - CONSUMER_URL=http://ice-cus-consumer:9966
+#      - CONSUMER_URL=http://localhost:9966
+      - CONSUMER_URL=http://127.0.0.1:9966
+#      - CONSUMER_URL=http://172.16.0.146:9966
+
+
+
+
