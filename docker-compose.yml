@@ -24,12 +24,13 @@ services:
 #    extra_hosts:
 #      - "host.docker.internal:host-gateway"
     environment:
-#      - SERVER_PORT=9955
+      - SERVER_PORT=9955
 #      - CONSUMER_URL=http://ice-cus-consumer:9966
 #      - CONSUMER_URL=http://localhost:9966
 #      - CONSUMER_URL=http://127.0.0.1:9966
 #      - CONSUMER_URL=http://172.16.0.146:9966
-      - CONSUMER_URL=http://host.docker.internal:9966
+#      - CONSUMER_URL=http://host.docker.internal:9966
+      - CONSUMER_URL=http://icedev.ru:9966
 
 
 #    extra_hosts:
